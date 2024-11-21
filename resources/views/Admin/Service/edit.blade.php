@@ -43,7 +43,7 @@
                     </div>
                     <div class="x_content">
                         <br />
-                        <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="POST" action="" enctype="multipart/form-data">
+                        <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="POST" action="{{ route('admin.service.update') }}" enctype="multipart/form-data">
                             @csrf
 
                             <div class="item form-group">
@@ -57,7 +57,7 @@
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Service Description <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input type="text" id="first-name" value="{{ $service->service_description }}" required="required" class="form-control ">
+                                    <input type="text" id="first-name" name="description" value="{{ $service->service_description }}" required="required" class="form-control ">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -74,6 +74,8 @@
                             <div class="item form-group">
                                 <div class="col-md-6 col-sm-6 offset-md-3">
                                     <button class="btn btn-primary" type="button" onclick="window.history.back();">Cancel</button>
+                                    <input type="hidden" value="{{ $service->service_id  }}" name="id">
+                                    <input type="hidden" name="old_img" value="{{$service->service_icon}}">
                                     <button class="btn btn-primary" type="reset" onclick="window.location.reload();">Reset</button>
                                     <button type="submit" class="btn btn-success">Submit</button>
                                 </div>

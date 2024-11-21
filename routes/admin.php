@@ -32,6 +32,8 @@ Route::post('/Admin/Save-Service', [ServiceController::class, 'save'])->name('se
 Route::get('/Admin/All-Services', [ServiceController::class, 'table'])->name('all.services');
 Route::post('/Admin/Service-Update-status/{id}', [ServiceController::class, 'UpdateStatus'])->name('service.updatestatus');
 Route::get('/Admin/Edit-Service/{id}', [ServiceController::class, 'edit'])->name('service.edit');
+Route::post('/Admin/Update-Services', [ServiceController::class, 'update'])->name('service.update');
+Route::get('/Admin/Delete-Service/{id}', [ServiceController::class, 'del'])->name('service.del');
 
 Route::get('/Admin-logout', [AuthenticatedSessionController::class, 'destroy'])
 ->name('out');

@@ -117,7 +117,7 @@
                                                             <td>
                                                                 <a href="{{ route('admin.service.edit', $service->service_id) }}"><i
                                                                         class="fa fa-pencil"></i></a>
-                                                                <a href=""><i
+                                                                <a href="{{ route('admin.service.del', $service->service_id) }}"><i
                                                                         class="fa fa-trash"></i></a>
                                                             </td>
                                                         </tr>
