@@ -72,8 +72,8 @@
         <div class="row w-100 mx-0">
           <div class="col-lg-4 mx-auto">
             <div class="auth-form-light text-left py-5 px-4 px-sm-5">
-              <div class="brand-logo">
-                <img src="public/backend/login/images/logo.svg" alt="logo">
+              <div class="brand-logo" style="text-align: center"> 
+                <img src="public/backend/login/images/WhatsApp_Image_2024-11-19_at_20.42.42_f44f7eac-removebg-preview.png" alt="logo">
               </div>
               <h4>Hello! let's get started</h4>
               <h6 class="font-weight-light">Sign in to continue.</h6>
@@ -99,13 +99,8 @@
                   </div>
                   <a href="#" class="auth-link text-black">Forgot password?</a>
                 </div>
-                <div class="mb-2">
-                  <button type="button" class="btn btn-block btn-facebook auth-form-btn">
-                    <i class="typcn typcn-social-facebook-circular mr-2"></i>Connect using facebook
-                  </button>
-                </div>
                 <div class="text-center mt-4 font-weight-light">
-                  Don't have an account? <a href="register.html" class="text-primary">Create</a>
+                  Don't have an account? <a href="{{ route('register') }}" class="text-primary">Create</a>
                 </div>
               </form>
             </div>

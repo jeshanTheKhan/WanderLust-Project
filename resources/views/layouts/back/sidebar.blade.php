@@ -14,6 +14,12 @@
             <li><a href="{{ route('admin.all.carosel') }}">All Carosel</a></li>
           </ul>
         </li>
+        <li><a><i class="fa fa-home"></i> Services <span class="fa fa-chevron-down"></span></a>
+          <ul class="nav child_menu">
+            <li><a href="{{ route('admin.add.services') }}">Add Services</a></li>
+            <li><a href="{{ route('admin.all.services') }}">All Services</a></li>
+          </ul>
+        </li>
                 
       </ul>
     </div>

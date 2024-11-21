@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CaroselController;
 use App\Http\Controllers\Admin\PlaceController;
+use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 Route::get('/Admin/Admin-Dashboard', [AdminController::class, 'index'])->name('home');
@@ -24,6 +25,13 @@ Route::post('/Admin/Place-status/{id}', [PlaceController::class, 'UpdateStatus']
 Route::get('/Admin/Edit-Place/{id}', [PlaceController::class, 'edit'])->name('edit.place');
 Route::post('/Admin/Update-Place', [PlaceController::class, 'update'])->name('place.update');
 Route::get('/Admin/Delete-Place/{id}', [PlaceController::class, 'del'])->name('del.place');
+
+// Services Section
+Route::get('/Admin/Add-Services', [ServiceController::class, 'index'])->name('add.services');
+Route::post('/Admin/Save-Service', [ServiceController::class, 'save'])->name('service.save');
+Route::get('/Admin/All-Services', [ServiceController::class, 'table'])->name('all.services');
+Route::post('/Admin/Service-Update-status/{id}', [ServiceController::class, 'UpdateStatus'])->name('service.updatestatus');
+Route::get('/Admin/Edit-Service/{id}', [ServiceController::class, 'edit'])->name('service.edit');
 
 Route::get('/Admin-logout', [AuthenticatedSessionController::class, 'destroy'])
 ->name('out');
