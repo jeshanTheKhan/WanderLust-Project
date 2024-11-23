@@ -4,6 +4,9 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CaroselController;
 use App\Http\Controllers\Admin\PlaceController;
 use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\PackageController;
+use App\Http\Controllers\Admin\DestinationController;
+use App\Http\Controllers\Admin\GuideController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 Route::get('/Admin/Admin-Dashboard', [AdminController::class, 'index'])->name('home');
@@ -34,6 +37,37 @@ Route::post('/Admin/Service-Update-status/{id}', [ServiceController::class, 'Upd
 Route::get('/Admin/Edit-Service/{id}', [ServiceController::class, 'edit'])->name('service.edit');
 Route::post('/Admin/Update-Services', [ServiceController::class, 'update'])->name('service.update');
 Route::get('/Admin/Delete-Service/{id}', [ServiceController::class, 'del'])->name('service.del');
+
+// User Section
+Route::get('/Admin/Add-User', [AdminController::class, 'user_index'])->name('add.user');
+Route::post('/Admin/Save-User', [AdminController::class, 'save'])->name('user.save');
+Route::get('/Admin/All-User', [AdminController::class, 'table'])->name('all.user');
+Route::post('/Admin/USer-status/{id}', [AdminController::class, 'UpdateStatus'])->name('user.updatestatus');
+Route::get('/Admin/Edit-User/{id}', [AdminController::class, 'edit'])->name('user.edit');
+
+// Package
+Route::get('/Admin/Add-Package', [PackageController::class, 'index'])->name('add.package');
+Route::post('/Admin/Save-Package', [PackageController::class, 'save'])->name('save.package');
+Route::get('/Admin/All-Package', [PackageController::class, 'table'])->name('all.package');
+Route::post('/Admin/Package-status/{id}', [PackageController::class, 'UpdateStatus'])->name('package.updatestatus');
+Route::get('/Admin/Edit-Package/{id}', [PackageController::class, 'edit'])->name('package.edit');
+Route::post('/Admin/Update-Package', [PackageController::class, 'update'])->name('update.package');
+Route::get('/Admin/Delete-Package/{id}', [PackageController::class, 'del'])->name('package.del');
+
+// Destination Section
+Route::get('/Admin/Add-Destination', [DestinationController::class, 'index'])->name('add.destination');
+Route::post('/Admin/Save-Destination', [DestinationController::class, 'Save'])->name('save.destination');
+Route::get('/Admin/All-Destination', [DestinationController::class, 'table'])->name('all.destination');
+Route::post('/Admin/Destination-Update-status/{id}', [DestinationController::class, 'UpdateStatus'])->name('destination.updateStatus');
+Route::get('/Admin/Destination-Edit/{id}', [DestinationController::class, 'edit'])->name('destination.edit');
+Route::post('/Admin/Update-Destination', [DestinationController::class, 'update'])->name('update.destination');
+Route::get('/Admin/Destination-Delete/{id}', [DestinationController::class, 'del'])->name('destination.del');
+
+// Guide Section
+Route::get('/Admin/Add-Guide', [GuideController::class, 'index'])->name('add.guide');
+Route::post('/Admin/Save-Guide', [GuideController::class, 'Save'])->name('save.guide');
+Route::get('/Admin/All-Guide', [GuideController::class, 'table'])->name('all.guide');
+
 
 Route::get('/Admin-logout', [AuthenticatedSessionController::class, 'destroy'])
 ->name('out');

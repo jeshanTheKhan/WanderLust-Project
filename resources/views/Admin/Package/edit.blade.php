@@ -1,5 +1,7 @@
 @extends('layouts.back.backend')
 @section('content')
+
+
 <div class="right_col" role="main">
     <div class="">
         <div class="page-title">
@@ -43,30 +45,50 @@
                     </div>
                     <div class="x_content">
                         <br />
-                        <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="POST" action="{{ route('admin.service.save') }}" enctype="multipart/form-data">
+                        <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="POST" action="{{ route('shop.update.package') }}" enctype="multipart/form-data">
                             @csrf
 
                             <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Service Header <span class="required">*</span>
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Package Name <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input type="text" id="first-name" name="header" required="required" class="form-control ">
+                                    <input type="text" id="first-name" name="header" value="{{ $data->package_name }}" required="required" class="form-control ">
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Service Description <span class="required">*</span>
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Short Description <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input type="text" id="summernote" name="description" required="required" class="form-control ">
+                                    <input type="text" name="description" value="{{ $data->short_description }}" required="required" class="form-control ">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align">Select Place</label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <select class="form-control" name="place">
+                                        <option>{{ $data->place }}</option>
+                                        @foreach ($place as $place)
+                                        <option value="{{ $place->place_name }}">{{ $place->place_name }}</option>
+                                        @endforeach
+                                        
+                                    </select>
                                 </div>
                             </div>
                             <div class="item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="basic-icon-default-company">Main Thumbnail</label>
                                 <div class="col-sm-10">
-                                    <img id="studentPhoto">
+                                    <img id="studentPhoto" src="{{asset('storage/back/media/package/'.$data->package_images	)}}" style="width: 20%;height:auto;" alt="Avatar" title="Change the avatar">
                                   <div class="col-md-6 col-sm-6">
                                     <input class="form-control" type="file" name="main_thumbnail" id="formFile"  onchange="studentphoto(this);" id="photo" accept="image/*">
                                   </div>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Main Description <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <textarea type="text" id="summernote" name="long_description" value="" required="required" class="form-control">{!! $data->main_description !!}</textarea>
+
                                 </div>
                             </div>
                             <div class="ln_solid"></div>
@@ -74,6 +96,8 @@
                             <div class="item form-group">
                                 <div class="col-md-6 col-sm-6 offset-md-3">
                                     <button class="btn btn-primary" type="button" onclick="window.history.back();">Cancel</button>
+                                    <input type="hidden" value="{{ $data->package_id  }}" name="c_id">
+                                    <input type="hidden" name="old_img" value="{{$data->package_images}}">
                                     <button class="btn btn-primary" type="reset" onclick="window.location.reload();">Reset</button>
                                     <button type="submit" class="btn btn-success">Submit</button>
                                 </div>
@@ -87,30 +111,18 @@
 
     </div>
 </div>
+<!-- include libraries(jQuery, bootstrap) -->
 
-<script>
-    function studentphoto(input) {
-          if (input.files && input.files[0]) {
-              var reader = new FileReader();
-              reader.onload = function (e) {
-                  $('#studentPhoto')
-                  .attr('src', e.target.result)
-                  .attr("class","img-thumbnail mb-2")
-              };
-              reader.readAsDataURL(input.files[0]);
-          }
-        }
-        function studentphoto1(input) {
-          if (input.files && input.files[0]) {
-              var reader = new FileReader();
-              reader.onload = function (e) {
-                  $('#studentPhoto1')
-                  .attr('src', e.target.result)
-                  .attr("class","img-thumbnail mb-2")
-              };
-              reader.readAsDataURL(input.files[0]);
-          }
-        }
-        </script>
-        
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<!-- include summernote css/js -->
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.js"></script>
+
+     <script>
+        $('#summernote').summernote({
+          placeholder: 'Write your description',
+        });
+  </script>  
 @endsection

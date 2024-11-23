@@ -43,32 +43,38 @@
                     </div>
                     <div class="x_content">
                         <br />
-                        <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="POST" action="{{ route('admin.service.save') }}" enctype="multipart/form-data">
+                        <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="POST" action="{{ route('admin.user.save') }}" enctype="multipart/form-data">
                             @csrf
 
                             <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Service Header <span class="required">*</span>
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">First Name <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input type="text" id="first-name" name="header" required="required" class="form-control ">
+                                    <input type="text" id="first-name" name="header1" required="required" class="form-control ">
+                                </div>
+                            </div>
+                            {{-- <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Last Name <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="text" id="last-name" name="header2" required="required" class="form-control">
+                                </div>
+                            </div> --}}
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">E-Mail <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input type="email" id="last-name" name="email" required="required" class="form-control">
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Service Description <span class="required">*</span>
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Password <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input type="text" id="summernote" name="description" required="required" class="form-control ">
+                                    <input type="text" id="last-name" name="password" required="required" class="form-control">
                                 </div>
                             </div>
-                            <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="basic-icon-default-company">Main Thumbnail</label>
-                                <div class="col-sm-10">
-                                    <img id="studentPhoto">
-                                  <div class="col-md-6 col-sm-6">
-                                    <input class="form-control" type="file" name="main_thumbnail" id="formFile"  onchange="studentphoto(this);" id="photo" accept="image/*">
-                                  </div>
-                                </div>
-                            </div>
+                            
                             <div class="ln_solid"></div>
                             
                             <div class="item form-group">
@@ -88,29 +94,4 @@
     </div>
 </div>
 
-<script>
-    function studentphoto(input) {
-          if (input.files && input.files[0]) {
-              var reader = new FileReader();
-              reader.onload = function (e) {
-                  $('#studentPhoto')
-                  .attr('src', e.target.result)
-                  .attr("class","img-thumbnail mb-2")
-              };
-              reader.readAsDataURL(input.files[0]);
-          }
-        }
-        function studentphoto1(input) {
-          if (input.files && input.files[0]) {
-              var reader = new FileReader();
-              reader.onload = function (e) {
-                  $('#studentPhoto1')
-                  .attr('src', e.target.result)
-                  .attr("class","img-thumbnail mb-2")
-              };
-              reader.readAsDataURL(input.files[0]);
-          }
-        }
-        </script>
-        
 @endsection

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
 
-class User
+class Shop
 {
     /**
      * Handle an incoming request.
@@ -16,11 +16,13 @@ class User
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::user()->user_role != 'user'){
-            return redirect()->route('admin.home');
+        // Check if the user is not an admin and redirect them to the dashboard
+        if(Auth::user()->user_role != 'shop_kepper'){
+            return redirect()->route('dashboard');
         }
-      
         
+
+        // Allow the request to proceed for other roles
         return $next($request);
     }
 }
