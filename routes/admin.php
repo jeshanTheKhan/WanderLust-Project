@@ -67,6 +67,10 @@ Route::get('/Admin/Destination-Delete/{id}', [DestinationController::class, 'del
 Route::get('/Admin/Add-Guide', [GuideController::class, 'index'])->name('add.guide');
 Route::post('/Admin/Save-Guide', [GuideController::class, 'Save'])->name('save.guide');
 Route::get('/Admin/All-Guide', [GuideController::class, 'table'])->name('all.guide');
+Route::post('/Admin/Guide-status/{id}', [GuideController::class, 'UpdateStatus'])->name('guide.updatestatus');
+Route::get('/Admin/Guide-Edit/{id}', [GuideController::class, 'edit'])->name('guide.edit');
+Route::post('/Admin/Update-Guide', [GuideController::class, 'update'])->name('update.guide');
+Route::get('/Admin/Guide-Delete/{id}', [GuideController::class, 'del'])->name('guide.del');
 
 
 Route::get('/Admin-logout', [AuthenticatedSessionController::class, 'destroy'])

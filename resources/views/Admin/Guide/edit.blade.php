@@ -45,49 +45,49 @@
                     </div>
                     <div class="x_content">
                         <br />
-                        <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="POST" action="{{ route('admin.save.guide') }}" enctype="multipart/form-data">
+                        <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="POST" action="{{ route('admin.update.guide') }}" enctype="multipart/form-data">
                             @csrf
 
                             <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Guide Name <span class="required">*</span>
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">guide Name <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input type="text" id="first-name" name="header" required="required" class="form-control ">
+                                    <input type="text" id="first-name" name="header" value="{{ $guide->guide_name }}" required="required" class="form-control ">
                                 </div>
                             </div>
                             <div class="item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Facebook <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input type="text" name="facebook" required="required" class="form-control ">
+                                    <input type="text" name="facebook" value="{{ $guide->guide_fb }}" required="required" class="form-control ">
                                 </div>
                             </div>
                             <div class="item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Instagram <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input type="text" name="instagram" required="required" class="form-control ">
+                                    <input type="text" name="instagram" value="{{ $guide->guide_instagram }}" required="required" class="form-control ">
                                 </div>
                             </div>
                             <div class="item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Linkdln <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input type="text" name="linkdln" required="required" class="form-control ">
+                                    <input type="text" name="linkdln" value="{{ $guide->guide_linkdln }}" required="required" class="form-control ">
                                 </div>
                             </div>
                             <div class="item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Twitter <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input type="text" name="twitter" required="required" class="form-control ">
+                                    <input type="text" name="twitter" value="{{ $guide->guide_twitter }}" required="required" class="form-control ">
                                 </div>
                             </div>
                             <div class="item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align">Select Place</label>
                                 <div class="col-md-6 col-sm-6 ">
                                     <select class="form-control" name="place">
-                                        <option>Choose option</option>
+                                        <option>{{ $guide->place }}</option>
                                         @foreach ($place as $place)
                                         <option value="{{ $place->place_name }}">{{ $place->place_name }}</option>
                                         @endforeach
@@ -98,7 +98,7 @@
                             <div class="item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="basic-icon-default-company">Main Thumbnail</label>
                                 <div class="col-sm-10">
-                                    <img id="studentPhoto">
+                                    <img id="studentPhoto" src="{{asset('storage/back/media/guide/'.$guide->guide_image)}}" style="width: 30%;height:auto;" alt="Avatar" title="Change the avatar">
                                   <div class="col-md-6 col-sm-6">
                                     <input class="form-control" type="file" name="main_thumbnail" id="formFile"  onchange="studentphoto(this);" id="photo" accept="image/*">
                                   </div>
@@ -110,6 +110,8 @@
                                 <div class="col-md-6 col-sm-6 offset-md-3">
                                     <button class="btn btn-primary" type="button" onclick="window.history.back();">Cancel</button>
                                     <button class="btn btn-primary" type="reset" onclick="window.location.reload();">Reset</button>
+                                    <input type="hidden" name="c_id" value="{{ $guide->guide_id }}">
+                                    <input type="hidden" name="old_img" value="{{ $guide->guide_image }}">
                                     <button type="submit" class="btn btn-success">Submit</button>
                                 </div>
                             </div>

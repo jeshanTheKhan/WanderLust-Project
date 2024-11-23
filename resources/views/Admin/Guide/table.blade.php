@@ -62,20 +62,20 @@
                         @foreach ($data as $data)
                         <tr>
                             <td>{{ $sl++ }}</td>
-                            <td>{{ $data->destination_data }}
+                            <td>{{ $data->place }}
                             </td>
                             <td style="text-align: center">
-                                <img src="{{asset('storage/back/media/destination/'.$data->destination_image)}}" style="width: 30%;height:auto;" alt="Avatar" title="Change the avatar">
+                                <img src="{{asset('storage/back/media/guide/'.$data->guide_image)}}" style="width: 30%;height:auto;" alt="Avatar" title="Change the avatar">
                             </td>
                             <td>
-                                @if($data->destination_status == 1)
-                                     <form action="" method="POST">
+                                @if($data->guide_status == 1)
+                                     <form action="{{ route('admin.guide.updatestatus', $data->guide_id) }}" method="POST">
                                 @csrf
                                     <input type="hidden" name="status" value="0">
                                     <button type="submit" class="btn btn-success">Available</button>
                                     </form>
                                 @else
-                                    <form action="" method="POST">
+                                    <form action="{{ route('admin.guide.updatestatus', $data->guide_id) }}" method="POST">
                                 @csrf
                                     <input type="hidden" name="status" value="1">
                                     <button type="submit" class="btn btn-danger">Unavailable</button>
@@ -83,9 +83,9 @@
                              @endif  
                             </td>
                             <td>
-                                <a href=""><i
+                                <a href="{{ route('admin.guide.edit', $data->guide_id) }}"><i
                                     class="fa fa-pencil"></i></a>
-                            <a href=""><i
+                            <a href="{{ route('admin.guide.del', $data->guide_id) }}"><i
                                     class="fa fa-trash"></i></a>
                             </td>
                           </tr>
