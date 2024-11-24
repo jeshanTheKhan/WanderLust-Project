@@ -90,4 +90,21 @@ class AdminController extends Controller
         return redirect()->back()->with($notification);
 
     }
+    public function type_table(){
+        $data=User_role::all();
+        return view('Admin.User_type.table',compact('data'));
+    }
+    // Status Update
+    public function user_roleUpdateStatus(Request $request, $id)
+    {
+    
+        $data = User_role::find($id);
+
+ 
+        $data->user_status = $request->input('status');
+        $data->save();  
+
+  
+        return redirect()->back()->with('status', 'Status updated successfully!');
+    }
 }

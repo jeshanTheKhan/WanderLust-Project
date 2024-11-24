@@ -5,7 +5,7 @@
         <li><a><i class="fa fa-user"></i> User Role <span class="fa fa-chevron-down"></span></a>
           <ul class="nav child_menu">
             <li><a href="{{ route('admin.add.user_rule') }}">Add User</a></li>
-            <li><a href="{{ route('admin.all.user') }}">All User</a></li>
+            <li><a href="{{ route('admin.all.user_rule') }}">All User</a></li>
           </ul>
         </li> 
         <li><a><i class="fa fa-user"></i> User <span class="fa fa-chevron-down"></span></a>

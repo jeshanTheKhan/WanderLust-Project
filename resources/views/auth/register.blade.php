@@ -78,10 +78,11 @@
               <div class="col-lg-4 mx-auto">
                 <div class="auth-form-light text-left py-5 px-4 px-sm-5">
                   <div class="brand-logo" style="text-align: center">
-                    <img src="public/backend/login/images/WhatsApp_Image_2024-11-19_at_20.42.42_f44f7eac-removebg-preview.png" alt="logo">
+                    <img src="public/backend/login/images/WhatsApp_Image_2024-11-19_at_20.42.42_f44f7eac-removebg-preview.png" height="150px" alt="logo">
+                    <h1 style="text-align: center;color:#1E90FF">Register</h1>
                   </div>
-                  <h4>New here?</h4>
-                  <h6 class="font-weight-light">Signing up is easy. It only takes a few steps</h6>
+                  <h4 style="text-align: center">New here?</h4>
+                  <h6 class="font-weight-light" style="text-align: center">Signing up is easy. It only takes a few steps</h6>
                   <form class="pt-3" method="POST" action="{{ route('register') }}">
                     @csrf
                     <div class="form-group">
