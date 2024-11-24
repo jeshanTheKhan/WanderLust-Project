@@ -46,6 +46,10 @@ Route::get('/Admin/All-User', [AdminController::class, 'table'])->name('all.user
 Route::post('/Admin/USer-status/{id}', [AdminController::class, 'UpdateStatus'])->name('user.updatestatus');
 Route::get('/Admin/Edit-User/{id}', [AdminController::class, 'edit'])->name('user.edit');
 
+// User_Type
+Route::get('/Admin/Add-User-Type', [AdminController::class, 'type_index'])->name('add.user_rule');
+Route::post('/Admin/Save-user_role', [AdminController::class, 'user_role'])->name('save.user_role');
+
 // Package
 Route::get('/Admin/Add-Package', [PackageController::class, 'index'])->name('add.package');
 Route::post('/Admin/Save-Package', [PackageController::class, 'save'])->name('save.package');

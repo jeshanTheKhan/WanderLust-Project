@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\User_role;
 use Hash;
 
 class AdminController extends Controller
@@ -63,5 +64,30 @@ class AdminController extends Controller
     public function edit($id){
         $data=User::find($id);
         return view('Admin.User.edit',compact('data'));
+    }
+    // Type
+    // Index
+    public function type_index(){
+        return view('Admin.User_type.index');
+    }
+    public function user_role(Request $req){
+        $store=New User_role();
+        $store->user_type=$req->header;
+
+        $store->save();
+        if($store){
+            $notification = array(
+                'message' => 'User_Role Added Successfully',
+                'alert-type' => 'success'
+            );
+        }
+        else{
+            $notification = array(
+                'message' => 'Failed To Add!!',
+                'alert-type' => 'error'
+            );
+        }
+        return redirect()->back()->with($notification);
+
     }
 }
