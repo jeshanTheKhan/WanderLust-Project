@@ -44,10 +44,10 @@
             <li><a href="{{ route('admin.all.guide') }}">All Guide</a></li>
           </ul>
         </li>
-        <li><a><i class="fa fa-globe"></i> Blog <span class="fa fa-chevron-down"></span></a>
+        <li><a><i class="fa fa-book"></i> Blog <span class="fa fa-chevron-down"></span></a>
           <ul class="nav child_menu">
-            <li><a href="{{ route('admin.add.destination') }}">Add Destination</a></li>
-            <li><a href="{{ route('admin.all.destination') }}">All Destination</a></li>
+            <li><a href="{{ route('admin.add.blog') }}">Add Blog</a></li>
+            <li><a href="{{ route('admin.all.blog') }}">All Blog</a></li>
           </ul>
         </li>
                 

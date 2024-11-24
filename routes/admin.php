@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\PackageController;
 use App\Http\Controllers\Admin\DestinationController;
 use App\Http\Controllers\Admin\GuideController;
+use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 Route::get('/Admin/Admin-Dashboard', [AdminController::class, 'index'])->name('home');
@@ -71,6 +72,11 @@ Route::post('/Admin/Guide-status/{id}', [GuideController::class, 'UpdateStatus']
 Route::get('/Admin/Guide-Edit/{id}', [GuideController::class, 'edit'])->name('guide.edit');
 Route::post('/Admin/Update-Guide', [GuideController::class, 'update'])->name('update.guide');
 Route::get('/Admin/Guide-Delete/{id}', [GuideController::class, 'del'])->name('guide.del');
+
+// Blog Section
+Route::get('/Admin/Add-Blog', [BlogController::class, 'index'])->name('add.blog');
+Route::post('/Admin/Save-Blog', [BlogController::class, 'Save'])->name('save.blog');
+Route::get('/Admin/All-Blog', [BlogController::class, 'table'])->name('all.blog');
 
 
 Route::get('/Admin-logout', [AuthenticatedSessionController::class, 'destroy'])
