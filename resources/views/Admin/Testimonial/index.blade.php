@@ -45,50 +45,37 @@
                     </div>
                     <div class="x_content">
                         <br />
-                        <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="POST" action="{{ route('admin.update.package') }}" enctype="multipart/form-data">
+                        <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="POST" action="{{ route('admin.save.testimonial') }}" enctype="multipart/form-data">
                             @csrf
 
                             <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Package Name <span class="required">*</span>
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Client Name <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input type="text" id="first-name" name="header" value="{{ $data->package_name }}" required="required" class="form-control ">
+                                    <input type="text" id="first-name" name="header" required="required" class="form-control ">
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Short Description <span class="required">*</span>
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Client Comment <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input type="text" name="description" value="{{ $data->short_description }}" required="required" class="form-control ">
+                                    <input type="text" name="description" required="required" class="form-control ">
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align">Select Place</label>
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Client Location <span class="required">*</span>
+                                </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <select class="form-control" name="place">
-                                        <option>{{ $data->place }}</option>
-                                        @foreach ($place as $place)
-                                        <option value="{{ $place->place_name }}">{{ $place->place_name }}</option>
-                                        @endforeach
-                                        
-                                    </select>
+                                    <input type="text" name="location" required="required" class="form-control ">
                                 </div>
                             </div>
                             <div class="item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="basic-icon-default-company">Main Thumbnail</label>
                                 <div class="col-sm-10">
-                                    <img id="studentPhoto" src="{{asset('storage/back/media/package/'.$data->package_images	)}}" style="width: 20%;height:auto;" alt="Avatar" title="Change the avatar">
+                                    <img id="studentPhoto">
                                   <div class="col-md-6 col-sm-6">
                                     <input class="form-control" type="file" name="main_thumbnail" id="formFile"  onchange="studentphoto(this);" id="photo" accept="image/*">
                                   </div>
-                                </div>
-                            </div>
-                            <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Main Description <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 ">
-                                    <textarea type="text" id="summernote" name="long_description" value="" required="required" class="form-control">{!! $data->main_description !!}</textarea>
-
                                 </div>
                             </div>
                             <div class="ln_solid"></div>
@@ -96,8 +83,6 @@
                             <div class="item form-group">
                                 <div class="col-md-6 col-sm-6 offset-md-3">
                                     <button class="btn btn-primary" type="button" onclick="window.history.back();">Cancel</button>
-                                    <input type="hidden" value="{{ $data->package_id  }}" name="c_id">
-                                    <input type="hidden" name="old_img" value="{{$data->package_images}}">
                                     <button class="btn btn-primary" type="reset" onclick="window.location.reload();">Reset</button>
                                     <button type="submit" class="btn btn-success">Submit</button>
                                 </div>

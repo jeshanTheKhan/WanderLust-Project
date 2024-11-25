@@ -1,39 +1,35 @@
 <?php
 
-namespace App\Http\Controllers\Shop;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Package;
-use App\Models\Place;
-use Str;
+use App\Models\Testimonial;
 use Image;
 
-class PackageController extends Controller
+class TestimonialController extends Controller
 {
-    //Index
+    //
     public function index(){
-        $place=Place::all();
-        return view('Admin.Package.index',compact('place'));
+        return view('Admin.Testimonial.index');
     }
+    // Insert Data
     public function save(Request $req){
-        $store=New Package();
-        $store->package_name=$req->header;
-        $store->package_slug=Str::slug($req->header);
-        $store->short_description=$req->description;
-        $store->main_description=$req->long_description;
-        $store->place=$req->place;
+        $store=New Testimonial();
+        $store->client_name=$req->header;
+        $store->client_comment=$req->description;
+        $store->client_location=$req->location;
 
         if ($req->file('main_thumbnail')) {
             $image = $req->file('main_thumbnail');
             $image_ext = chr(rand(65, 90)) .'-'.rand(00000, 99999). '.' . $image->getClientOriginalExtension();
-            Image::make($image)->resize(300, 300)->save('storage/back/media/package/' . $image_ext);
-            $store->package_images = $image_ext;
+            Image::make($image)->resize(300, 300)->save('storage/back/media/testimonial/' . $image_ext);
+            $store->client_image = $image_ext;
         }
         $store->save();
         if($store){
             $notification = array(
-                'message' => 'Package Added Successfully',
+                'message' => 'Testimonial Added Successfully',
                 'alert-type' => 'success'
             );
         }
@@ -44,62 +40,62 @@ class PackageController extends Controller
             );
         }
         return redirect()->back()->with($notification);
+
     }
-    // Database
     // Table
     public function table(){
-        $data=Package::all();
-        return view('Admin.Package.table',compact('data'));
+        $data=Testimonial::all();
+        return view('Admin.Testimonial.table',compact('data'));
     }
-    // Status Update
+    // Update Stautsu
     public function UpdateStatus(Request $request, $id)
     {
     
-        $data = Package::find($id);
+        $data = Testimonial::find($id);
 
  
-        $data->package_status = $request->input('status');
+        $data->status = $request->input('status');
         $data->save();  
 
   
         return redirect()->back()->with('status', 'Status updated successfully!');
     }
-    // Load Edit
+    // Load Edit Page
     public function edit($id){
-        $place=Place::all();
-        $data=Package::find($id);
-        return view('Admin.Package.edit',compact('data','place'));
+        $data=Testimonial::find($id);
+        return view('Admin.Testimonial.edit',compact('data'));
     }
     // Update
+    // Update
     public function update(Request $req){
-        $store=Package::find($req->c_id);
+        $store=Testimonial::find($req->c_id);
         // Update or keep previous values
-        $store->package_name = $req->header ?? $store->package_name; // Update if provided, keep existing otherwise
-        $store->package_slug = Str::slug($req->header ?? $store->package_name); // Ensure slug consistency
-        $store->short_description = $req->description ?? $store->short_description;
-        $store->main_description = $req->long_description ?? $store->main_description;
-        $store->place = $req->place ?? $store->place;
+        $store->client_name = $req->header ?? $store->client_name;
+        $store->client_comment = $req->description ?? $store->client_comment;
+        $store->client_location = $req->location ?? $store->client_location;
+
+        
 
         if ($req->file('main_thumbnail')) {
             $image = $req->file('main_thumbnail');
             $image_ext = chr(rand(65, 90)) .'-'.rand(00000, 99999). '.' . $image->getClientOriginalExtension();
          
              // Resize and save the image
-             Image::make($image)->resize(300, 300)->save('storage/back/media/package/' . $image_ext);
+             Image::make($image)->resize(300, 300)->save('storage/back/media/testimonial/' . $image_ext);
          
              // Delete the old image if it exists
-             if ($store->images && file_exists('storage/back/media/package/' . $store->images)) {
-                 unlink('storage/back/media/package/' . $req->old_img);
+             if ($store->images && file_exists('storage/back/media/testimonial/' . $store->images)) {
+                 unlink('storage/back/media/testimonial/' . $req->old_img);
              }
          
              // Update the database record with the new image name
-             $store->package_images = $image_ext;
+             $store->client_image = $image_ext;
              $store->save();
          }
          $store->save();
          if ($store) {
              $notification = array(
-                 'message' => 'Package Update Successfully',
+                 'message' => 'Testimonial Update Successfully',
                  'alert-type' => 'success'
              );
          } else {
@@ -112,11 +108,11 @@ class PackageController extends Controller
     }
     // Delete
     public function del($id){
-        $result = Package::find($id);
+        $result = Testimonial::find($id);
         
         // Check if the image file exists and delete it
         if ($result && $result->package_images) {
-            $imagePath = 'storage/back/media/package/' . $result->package_images;
+            $imagePath = 'storage/back/media/testimonial/' . $result->client_image;
             if (file_exists($imagePath)) {
                 unlink($imagePath);
             }
@@ -126,7 +122,7 @@ class PackageController extends Controller
         $result->delete();
         
         $notification = array(
-            'message' => 'Package Deleted Successfully',
+            'message' => 'Testimonial Deleted Successfully',
             'alert-type' => 'error'
         );
         

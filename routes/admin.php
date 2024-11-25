@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\PackageController;
 use App\Http\Controllers\Admin\DestinationController;
 use App\Http\Controllers\Admin\GuideController;
 use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 Route::get('/Admin/Admin-Dashboard', [AdminController::class, 'index'])->name('home');
@@ -45,12 +46,17 @@ Route::post('/Admin/Save-User', [AdminController::class, 'save'])->name('user.sa
 Route::get('/Admin/All-User', [AdminController::class, 'table'])->name('all.user');
 Route::post('/Admin/USer-status/{id}', [AdminController::class, 'UpdateStatus'])->name('user.updatestatus');
 Route::get('/Admin/Edit-User/{id}', [AdminController::class, 'edit'])->name('user.edit');
+Route::post('/Admin/Update-User', [AdminController::class, 'update'])->name('user.update');
+Route::get('/Admin/Delete-User/{id}', [AdminController::class, 'del'])->name('user.del');
 
 // User_Type
 Route::get('/Admin/Add-User-Type', [AdminController::class, 'type_index'])->name('add.user_rule');
 Route::post('/Admin/Save-user_role', [AdminController::class, 'user_role'])->name('save.user_role');
 Route::get('/Admin/All-User-Type', [AdminController::class, 'type_table'])->name('all.user_rule');
 Route::post('/Admin/USer_role-status/{id}', [AdminController::class, 'user_roleUpdateStatus'])->name('user_role.updatestatus');
+Route::get('/Admin/Edit-user_role/{id}', [AdminController::class, 'user_roleedit'])->name('user_role.edit');
+Route::post('/Admin/Update-user_role', [AdminController::class, 'user_roleupdate'])->name('user_role.update');
+Route::get('/Admin/Delete-user_role/{id}', [AdminController::class, 'user_roledel'])->name('user_role.del');
 
 // Package
 Route::get('/Admin/Add-Package', [PackageController::class, 'index'])->name('add.package');
@@ -83,7 +89,19 @@ Route::get('/Admin/Guide-Delete/{id}', [GuideController::class, 'del'])->name('g
 Route::get('/Admin/Add-Blog', [BlogController::class, 'index'])->name('add.blog');
 Route::post('/Admin/Save-Blog', [BlogController::class, 'Save'])->name('save.blog');
 Route::get('/Admin/All-Blog', [BlogController::class, 'table'])->name('all.blog');
+Route::post('/Admin/blog-status/{id}', [BlogController::class, 'blogUpdateStatus'])->name('blog.updatestatus');
+Route::get('/Admin/Edit-blog/{id}', [BlogController::class, 'edit'])->name('blog.edit');
+Route::post('/Admin/Update-blog', [BlogController::class, 'update'])->name('update.blog');
+Route::get('/Admin/Edit-Delete/{id}', [BlogController::class, 'del'])->name('blog.del');
 
+// Testimonial
+Route::get('/Admin/Add-testimonial', [TestimonialController::class, 'index'])->name('add.testimonial');
+Route::post('/Admin/Save-testimonial', [TestimonialController::class, 'Save'])->name('save.testimonial');
+Route::get('/Admin/All-testimonial', [TestimonialController::class, 'table'])->name('all.testimonial');
+Route::post('/Admin/testimonial-Update-status/{id}', [TestimonialController::class, 'UpdateStatus'])->name('testimonial.updatestatus');
+Route::get('/Admin/Edit-testimonial/{id}', [TestimonialController::class, 'edit'])->name('testimonial.edit');
+Route::post('/Admin/Update-testimonial', [TestimonialController::class, 'update'])->name('update.testimonial');
+Route::get('/Admin/Delete-testimonial/{id}', [TestimonialController::class, 'del'])->name('testimonial.del');
 
 Route::get('/Admin-logout', [AuthenticatedSessionController::class, 'destroy'])
 ->name('out');

@@ -104,13 +104,13 @@
                                                             </td>
                                                             <td>
                                                                 @if($blog->blog_status == 1)
-                                                                    <form action="" method="POST">
+                                                                    <form action="{{ route('admin.blog.updatestatus', $blog->blog_id  ) }}" method="POST">
                                                                 @csrf
                                                                     <input type="hidden" name="status" value="0">
                                                                     <button type="submit" class="btn btn-success">Available</button>
                                                                 </form>
                                                                 @else
-                                                                    <form action="" method="POST">
+                                                                    <form action="{{ route('admin.blog.updatestatus', $blog->blog_id  ) }}" method="POST">
                                                                     @csrf
                                                                         <input type="hidden" name="status" value="1">
                                                                         <button type="submit" class="btn btn-danger">Unavailable</button>
@@ -118,9 +118,9 @@
                                                                 @endif      
                                                             </td>
                                                             <td>
-                                                                <a href=""><i
+                                                                <a href="{{ route('admin.blog.edit', $blog->blog_id  ) }}"><i
                                                                         class="fa fa-pencil"></i></a>
-                                                                <a href=""><i
+                                                                <a href="{{ route('admin.blog.del', $blog->blog_id  ) }}"><i
                                                                         class="fa fa-trash"></i></a>
                                                             </td>
                                                         </tr>

@@ -69,7 +69,7 @@ class PackageController extends Controller
     public function edit($id){
         $place=Place::all();
         $data=Package::find($id);
-        return view('Shop.Package.edit',compact('data','place'));
+        return view('Admin.Package.edit',compact('data','place'));
     }
     // Update
     public function update(Request $req){

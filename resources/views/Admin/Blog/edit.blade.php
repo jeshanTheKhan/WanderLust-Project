@@ -45,39 +45,41 @@
                     </div>
                     <div class="x_content">
                         <br />
-                        <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="POST" action="{{ route('admin.update.package') }}" enctype="multipart/form-data">
+                        <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="POST" action="{{ route('admin.update.blog') }}" enctype="multipart/form-data">
                             @csrf
 
                             <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Package Name <span class="required">*</span>
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Place Name <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input type="text" id="first-name" name="header" value="{{ $data->package_name }}" required="required" class="form-control ">
+                                    <input type="text" id="first-name" name="header" value="{{ $data->blog_header }}" required="required" class="form-control ">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align">Date Of Birth <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input id="birthday" class="date-picker form-control" placeholder="dd-mm-yyyy" value="{{ $data->blog_date }}" name="date" type="text" required="required" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)">
+                                    <script>
+                                        function timeFunctionLong(input) {
+                                            setTimeout(function() {
+                                                input.type = 'text';
+                                            }, 60000);
+                                        }
+                                    </script>
                                 </div>
                             </div>
                             <div class="item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Short Description <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input type="text" name="description" value="{{ $data->short_description }}" required="required" class="form-control ">
-                                </div>
-                            </div>
-                            <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align">Select Place</label>
-                                <div class="col-md-6 col-sm-6 ">
-                                    <select class="form-control" name="place">
-                                        <option>{{ $data->place }}</option>
-                                        @foreach ($place as $place)
-                                        <option value="{{ $place->place_name }}">{{ $place->place_name }}</option>
-                                        @endforeach
-                                        
-                                    </select>
+                                    <input type="text" name="short_description" required="required" value="{{ $data->blog_short_description }}" class="form-control ">
                                 </div>
                             </div>
                             <div class="item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="basic-icon-default-company">Main Thumbnail</label>
                                 <div class="col-sm-10">
-                                    <img id="studentPhoto" src="{{asset('storage/back/media/package/'.$data->package_images	)}}" style="width: 20%;height:auto;" alt="Avatar" title="Change the avatar">
+                                    <img id="studentPhoto" src="{{asset('storage/back/media/blog/'.$data->blog_main_image )}}" style="width: 20%;height:auto;" alt="Avatar" title="Change the avatar">
                                   <div class="col-md-6 col-sm-6">
                                     <input class="form-control" type="file" name="main_thumbnail" id="formFile"  onchange="studentphoto(this);" id="photo" accept="image/*">
                                   </div>
@@ -87,8 +89,7 @@
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Main Description <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <textarea type="text" id="summernote" name="long_description" value="" required="required" class="form-control">{!! $data->main_description !!}</textarea>
-
+                                    <textarea type="text" id="summernote" name="long_description" required="required" class="form-control ">{!! $data->blog_main_description !!}</textarea>
                                 </div>
                             </div>
                             <div class="ln_solid"></div>
@@ -96,9 +97,9 @@
                             <div class="item form-group">
                                 <div class="col-md-6 col-sm-6 offset-md-3">
                                     <button class="btn btn-primary" type="button" onclick="window.history.back();">Cancel</button>
-                                    <input type="hidden" value="{{ $data->package_id  }}" name="c_id">
-                                    <input type="hidden" name="old_img" value="{{$data->package_images}}">
                                     <button class="btn btn-primary" type="reset" onclick="window.location.reload();">Reset</button>
+                                    <input type="hidden" name="c_id" value="{{ $data->blog_id }}">
+                                    <input type="hidden" name="old_img" value="{{ $data->blog_main_image }}">
                                     <button type="submit" class="btn btn-success">Submit</button>
                                 </div>
                             </div>

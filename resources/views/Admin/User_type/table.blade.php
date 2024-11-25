@@ -78,9 +78,9 @@
                              @endif  
                             </td>
                             <td>
-                                <a href=""><i
+                                <a href="{{ route('admin.user_role.edit', $data->user_id ) }}"><i
                                     class="fa fa-pencil"></i></a>
-                            <a href=""><i
+                            <a href="{{ route('admin.user_role.del', $data->user_id ) }}"><i
                                     class="fa fa-trash"></i></a>
                             </td>
                           </tr>

@@ -56,6 +56,12 @@
             <li><a href="{{ route('admin.all.blog') }}">All Blog</a></li>
           </ul>
         </li>
+        <li><a><i class="fa fa-book"></i> Testimonial <span class="fa fa-chevron-down"></span></a>
+          <ul class="nav child_menu">
+            <li><a href="{{ route('admin.add.testimonial') }}">Add Testimonial</a></li>
+            <li><a href="{{ route('admin.all.testimonial') }}">All Testimonial</a></li>
+          </ul>
+        </li>
                 
       </ul>
     </div>

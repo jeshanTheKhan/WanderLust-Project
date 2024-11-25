@@ -1,5 +1,7 @@
 @extends('layouts.back.backend')
 @section('content')
+
+
 <div class="right_col" role="main">
     <div class="">
         <div class="page-title">
@@ -43,56 +45,23 @@
                     </div>
                     <div class="x_content">
                         <br />
-                        <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="POST" action="{{ route('admin.user.save') }}" enctype="multipart/form-data">
+                        <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="POST" action="{{ route('admin.user_role.update') }}" enctype="multipart/form-data">
                             @csrf
 
                             <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">First Name <span class="required">*</span>
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">User Type <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input type="text" id="first-name" name="header1" required="required" class="form-control ">
+                                    <input type="text" id="first-name" name="header" value="{{ $data->user_type }}" required="required" class="form-control ">
                                 </div>
                             </div>
-                            {{-- <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Last Name <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 ">
-                                    <input type="text" id="last-name" name="header2" required="required" class="form-control">
-                                </div>
-                            </div> --}}
-                            <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">E-Mail <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 ">
-                                    <input type="email" id="last-name" name="email" required="required" class="form-control">
-                                </div>
-                            </div>
-                            <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align">Select User</label>
-                                <div class="col-md-6 col-sm-6 ">
-                                    <select class="form-control" name="user">
-                                        <option>Choose option</option>
-                                        @foreach ($type as $type)
-                                        <option value="{{ $type->user_type }}">{{ $type->user_type }}</option>
-                                        @endforeach
-                                            
-                                     </select>
-                                </div>
-                            </div>
-                            <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Password <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 ">
-                                    <input type="text" id="last-name" name="password" required="required" class="form-control">
-                                </div>
-                            </div>
-                            
                             <div class="ln_solid"></div>
                             
                             <div class="item form-group">
                                 <div class="col-md-6 col-sm-6 offset-md-3">
                                     <button class="btn btn-primary" type="button" onclick="window.history.back();">Cancel</button>
                                     <button class="btn btn-primary" type="reset" onclick="window.location.reload();">Reset</button>
+                                    <input type="hidden" name="c_id" value="{{ $data->user_id }}">
                                     <button type="submit" class="btn btn-success">Submit</button>
                                 </div>
                             </div>

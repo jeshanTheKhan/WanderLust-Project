@@ -16,13 +16,14 @@ class AdminController extends Controller
     }
 
     public function user_index(){
-        return view('Admin.User.index');
+        $type=user_role::where('user_status','1')->get();
+        return view('Admin.User.index',compact('type'));
     }
 
     public function save(Request $req){
         $store=New User();
         $store->name=$req->header1;
-        $store->user_role='shop_kepper';
+        $store->user_role=$req->user;;
         $store->email =$req->email;
         $store->password = Hash::make($req->password);
 
@@ -63,7 +64,44 @@ class AdminController extends Controller
     // Load Edit Page
     public function edit($id){
         $data=User::find($id);
-        return view('Admin.User.edit',compact('data'));
+        $type=user_role::all();
+        return view('Admin.User.edit',compact('data','type'));
+    }
+    public function update(Request $req){
+        $store=User::find($req->c_id);
+        $store->name = $req->header1 ?? $store->name;
+        $store->user_role = $req->user ?? $store->user_role;
+        $store->email = $req->email ?? $store->email;
+        $store->password = $req->password ? Hash::make($req->password) : $store->password;
+
+        $store->save();
+        if($store){
+            $notification = array(
+                'message' => 'User Update Successfully',
+                'alert-type' => 'success'
+            );
+        }
+        else{
+            $notification = array(
+                'message' => 'Failed To Add!!',
+                'alert-type' => 'error'
+            );
+        }
+        return redirect()->back()->with($notification);
+
+    }
+    public function del($id){
+        $result = User::find($id);
+
+        // Delete the database entry
+        $result->delete();
+        
+        $notification = array(
+            'message' => 'User Deleted Successfully',
+            'alert-type' => 'error'
+        );
+        
+        return redirect()->back()->with($notification);
     }
     // Type
     // Index
@@ -106,5 +144,43 @@ class AdminController extends Controller
 
   
         return redirect()->back()->with('status', 'Status updated successfully!');
+    }
+    public function user_roleedit($id){
+        $data=User_role::find($id);
+        return view('Admin.User_type.edit',compact('data'));
+    }
+    public function user_roleupdate(Request $req){
+        $store=User_role::find($req->c_id);
+        $store->user_type = $req->header ?? $store->user_type;
+
+
+        $store->save();
+        if($store){
+            $notification = array(
+                'message' => 'User_Role Update Successfully',
+                'alert-type' => 'success'
+            );
+        }
+        else{
+            $notification = array(
+                'message' => 'Failed To Add!!',
+                'alert-type' => 'error'
+            );
+        }
+        return redirect()->back()->with($notification);
+
+    }
+    public function user_roledel($id){
+        $result = User_role::find($id);
+
+        // Delete the database entry
+        $result->delete();
+        
+        $notification = array(
+            'message' => 'User_Role Deleted Successfully',
+            'alert-type' => 'error'
+        );
+        
+        return redirect()->back()->with($notification);
     }
 }

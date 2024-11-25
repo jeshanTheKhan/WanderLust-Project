@@ -51,9 +51,9 @@
                       <thead>
                         <tr>
                           <th>Serial Number</th>
-                          <th>Name</th>
-                          <th>Position</th>
-                          <th>E-Mail</th>
+                          <th>Client Name</th>
+                          <th>Place</th>
+                          <th>Comment</th>
                           <th>Status</th>
                           <th>Action</th>
                         </tr>
@@ -63,31 +63,20 @@
                         @foreach ($data as $data)
                         <tr>
                             <td>{{ $sl++ }}</td>
-                            <td>{{ $data->name }}</td>
-                            <td>
-                                @if ($data->user_role == 'admin')
-                                
-                                    <button type="button" class="btn btn-success btn-xs">Admin</button>
-                                
-                                @elseif ($data->user_role == 'shop_kepper')
-                                
-                                    <button type="button" class="btn btn-success btn-xs">Moderator</button>
-                                @else 
-                                <button type="button" class="btn btn-success btn-xs">User</button>
-                                @endif
-                                
-
+                            <td>{{ $data->client_name }}</td>
+                            <td>{{ $data->client_location }}
                             </td>
-                            <td>{{ $data->email }}</td>
+                            <td>{{ Str::limit($data->client_comment, 100, '...') }}
+                            </td>
                             <td>
                                 @if($data->status == 1)
-                                     <form action="{{ route('admin.user.updatestatus', $data->id ) }}" method="POST">
+                                     <form action="{{ route('admin.testimonial.updatestatus', $data->testimonial_id ) }}" method="POST">
                                 @csrf
                                     <input type="hidden" name="status" value="0">
                                     <button type="submit" class="btn btn-success">Available</button>
                                     </form>
                                 @else
-                                    <form action="{{ route('admin.user.updatestatus', $data->id ) }}" method="POST">
+                                    <form action="{{ route('admin.testimonial.updatestatus', $data->testimonial_id ) }}" method="POST">
                                 @csrf
                                     <input type="hidden" name="status" value="1">
                                     <button type="submit" class="btn btn-danger">Unavailable</button>
@@ -95,9 +84,9 @@
                              @endif  
                             </td>
                             <td>
-                                <a href="{{ route('admin.user.edit', $data->id) }}"><i
+                                <a href="{{ route('admin.testimonial.edit', $data->testimonial_id ) }}"><i
                                     class="fa fa-pencil"></i></a>
-                            <a href="{{ route('admin.user.del', $data->id) }}"><i
+                            <a href="{{ route('admin.testimonial.del', $data->testimonial_id ) }}"><i
                                     class="fa fa-trash"></i></a>
                             </td>
                           </tr>
