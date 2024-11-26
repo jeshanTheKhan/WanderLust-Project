@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CaroselController;
 use App\Http\Controllers\Admin\PlaceController;
@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\DestinationController;
 use App\Http\Controllers\Admin\GuideController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\TestimonialController;
+use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 Route::get('/Admin/Admin-Dashboard', [AdminController::class, 'index'])->name('home');
@@ -58,6 +59,7 @@ Route::get('/Admin/Edit-user_role/{id}', [AdminController::class, 'user_roleedit
 Route::post('/Admin/Update-user_role', [AdminController::class, 'user_roleupdate'])->name('user_role.update');
 Route::get('/Admin/Delete-user_role/{id}', [AdminController::class, 'user_roledel'])->name('user_role.del');
 
+
 // Package
 Route::get('/Admin/Add-Package', [PackageController::class, 'index'])->name('add.package');
 Route::post('/Admin/Save-Package', [PackageController::class, 'save'])->name('save.package');
@@ -102,6 +104,23 @@ Route::post('/Admin/testimonial-Update-status/{id}', [TestimonialController::cla
 Route::get('/Admin/Edit-testimonial/{id}', [TestimonialController::class, 'edit'])->name('testimonial.edit');
 Route::post('/Admin/Update-testimonial', [TestimonialController::class, 'update'])->name('update.testimonial');
 Route::get('/Admin/Delete-testimonial/{id}', [TestimonialController::class, 'del'])->name('testimonial.del');
+
+// About Section
+Route::get('/Admin/Add-About', [AboutController::class, 'index'])->name('add.about');
+Route::post('/Admin/Save-About', [AboutController::class, 'Save'])->name('save.about');
+Route::get('/Admin/All-About', [AboutController::class, 'table'])->name('all.about');
+Route::post('/Admin/about-Update-status/{id}', [AboutController::class, 'UpdateStatus'])->name('about.updatestatus');
+Route::get('/Admin/Edit-About/{id}', [AboutController::class, 'edit'])->name('about.edit');
+Route::post('/Admin/Update-About', [AboutController::class, 'update'])->name('update.about');
+Route::get('/Admin/Delete-About/{id}', [AboutController::class, 'del'])->name('about.del');
+
+
+Route::middleware('auth')->group(function () {
+    Route::get('/Admin/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::post('/Admin/profile', [ProfileController::class, 'upload'])->name('profile.upload');
+    Route::post('/Admin/profile-image', [ProfileController::class, 'image_upload'])->name('profile.image_upload');
+    Route::delete('/Admin/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
 Route::get('/Admin-logout', [AuthenticatedSessionController::class, 'destroy'])
 ->name('out');
