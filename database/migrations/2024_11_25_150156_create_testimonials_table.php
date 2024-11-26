@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('client_comment');
             $table->string('client_location');
             $table->string('client_image');
+            $table->string('user')->nullable();
             $table->integer('status')->default('1');
             $table->timestamps();
         });

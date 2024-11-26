@@ -104,7 +104,7 @@ class TestimonialController extends Controller
                  'alert-type' => 'error'
              );
          }
-         return redirect()->back()->with($notification);  
+         return redirect()->route('admin.all.testimonial')->with($notification);  
     }
     // Delete
     public function del($id){

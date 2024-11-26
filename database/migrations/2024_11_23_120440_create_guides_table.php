@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('guide_twitter');
             $table->string('place');
             $table->string('guide_image');
+            $table->string('user')->nullable();
             $table->integer('guide_status')->default('1');
             $table->timestamps();
         });

@@ -98,7 +98,7 @@ public function table(){
                  'alert-type' => 'error'
              );
          }
-         return redirect()->back()->with($notification);  
+         return redirect()->route('admin.all.services')->with($notification);  
     }
     // Delete
     public function del($id){

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('blog_short_description');
             $table->longText('blog_main_description');
             $table->string('blog_main_image');
+            $table->string('user')->nullable();
             $table->integer('blog_status')->default('1');
             $table->timestamps();
         });

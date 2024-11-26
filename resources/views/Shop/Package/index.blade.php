@@ -96,6 +96,7 @@
                                 <div class="col-md-6 col-sm-6 offset-md-3">
                                     <button class="btn btn-primary" type="button" onclick="window.history.back();">Cancel</button>
                                     <button class="btn btn-primary" type="reset" onclick="window.location.reload();">Reset</button>
+                                    <input type="hidden" name="user" value="{{ Auth::user()->name }}">
                                     <button type="submit" class="btn btn-success">Submit</button>
                                 </div>
                             </div>

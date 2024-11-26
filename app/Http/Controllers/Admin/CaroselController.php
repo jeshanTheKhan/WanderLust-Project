@@ -34,7 +34,7 @@ class CaroselController extends Controller
         if ($req->file('main_thumbnail')) {
             $image = $req->file('main_thumbnail');
             $image_ext = chr(rand(65, 90)) .'-'.rand(00000, 99999). '.' . $image->getClientOriginalExtension();
-            Image::make($image)->resize(300, 300)->save('storage/back/media/' . $image_ext);
+            Image::make($image)->resize(300, 300)->save('storage/back/media/carosel/' . $image_ext);
             $store->images = $image_ext;
         }
         $store->save();
@@ -108,7 +108,7 @@ class CaroselController extends Controller
                  'alert-type' => 'error'
              );
          }
-         return redirect()->back()->with($notification);  
+         return redirect()->route('admin.all.carosel')->with($notification);  
  
      }
       // Delete
@@ -117,7 +117,7 @@ class CaroselController extends Controller
         
         // Check if the image file exists and delete it
         if ($result && $result->images) {
-            $imagePath = 'storage/back/media/' . $result->images;
+            $imagePath = 'storage/back/media/carosel/' . $result->images;
             if (file_exists($imagePath)) {
                 unlink($imagePath);
             }

@@ -9,6 +9,7 @@ use App\Models\Destination;
 use Str;
 use Image;
 
+
 class DestinationController extends Controller
 {
     //

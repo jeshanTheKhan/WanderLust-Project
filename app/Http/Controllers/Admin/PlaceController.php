@@ -84,7 +84,7 @@ class PlaceController extends Controller
         $result->delete();
         
         $notification = array(
-            'message' => 'Carosel Deleted Successfully',
+            'message' => 'Place Deleted Successfully',
             'alert-type' => 'error'
         );
         

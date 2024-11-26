@@ -105,7 +105,7 @@ class BlogController extends Controller
                  'alert-type' => 'error'
              );
          }
-         return redirect()->back()->with($notification);  
+         return redirect()->route('admin.all.blog')->with($notification);  
     }
     // Delete
     public function del($id){

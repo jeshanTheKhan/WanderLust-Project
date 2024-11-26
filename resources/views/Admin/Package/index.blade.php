@@ -68,7 +68,7 @@
                                     <select class="form-control" name="place">
                                         <option>Choose option</option>
                                         @foreach ($place as $place)
-                                        <option>{{ $place->place_name }}</option>
+                                        <option value="{{ $place->place_name }}">{{ $place->place_name }}</option>
                                         @endforeach
                                         
                                     </select>

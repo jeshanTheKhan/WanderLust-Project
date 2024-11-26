@@ -6,6 +6,7 @@ use Illuminate\Foundation\Configuration\Middleware;
 use App\Http\Middleware\Admin;
 use App\Http\Middleware\User;
 use App\Http\Middleware\Shop;
+use App\Http\Middleware\Moderator;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -21,6 +22,10 @@ return Application::configure(basePath: dirname(__DIR__))
                 ->prefix('shop')
                 ->name('shop.')
                 ->group(base_path('routes/shop.php'));
+                Route::middleware(['web','moderator'])
+                ->prefix('moderator')
+                ->name('moderator.')
+                ->group(base_path('routes/moderator.php'));
         },
     )
     ->withMiddleware(function (Middleware $middleware) {
@@ -29,6 +34,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'admin' => Admin::class,
             'user' => User::class,
             'shop' => Shop::class,
+            'moderator' => Moderator::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

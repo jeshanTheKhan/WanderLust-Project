@@ -109,7 +109,7 @@ class PackageController extends Controller
                  'alert-type' => 'error'
              );
          }
-         return redirect()->back()->with($notification);  
+         return redirect()->route('admin.all.package')->with($notification);  
     }
     // Delete
     public function del($id){

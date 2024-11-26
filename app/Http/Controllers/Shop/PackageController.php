@@ -14,7 +14,7 @@ class PackageController extends Controller
     //Index
     public function index(){
         $place=Place::all();
-        return view('Admin.Package.index',compact('place'));
+        return view('Shop.Package.index',compact('place'));
     }
     public function save(Request $req){
         $store=New Package();
@@ -49,7 +49,7 @@ class PackageController extends Controller
     // Table
     public function table(){
         $data=Package::all();
-        return view('Admin.Package.table',compact('data'));
+        return view('Shop.Package.table',compact('data'));
     }
     // Status Update
     public function UpdateStatus(Request $request, $id)
@@ -68,7 +68,7 @@ class PackageController extends Controller
     public function edit($id){
         $place=Place::all();
         $data=Package::find($id);
-        return view('Admin.Package.edit',compact('data','place'));
+        return view('Shop.Package.edit',compact('data','place'));
     }
     // Update
     public function update(Request $req){
@@ -108,7 +108,7 @@ class PackageController extends Controller
                  'alert-type' => 'error'
              );
          }
-         return redirect()->back()->with($notification);  
+         return redirect()->route('shop.all.package')->with($notification);  
     }
     // Delete
     public function del($id){

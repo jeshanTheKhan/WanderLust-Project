@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('package_slug');
             $table->string('short_description');
             $table->string('package_images');
+            $table->string('user')->nullable();
             $table->longText('main_description');
             $table->integer('package_status')->default('1');
             $table->timestamps();
