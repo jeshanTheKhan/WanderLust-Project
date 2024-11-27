@@ -13,7 +13,7 @@ class PackageController extends Controller
 {
      //Index
      public function index(){
-        $place=Place::all();
+        $place=Place::where('place_status',1)->get();
         return view('Moderator.Package.index',compact('place'));
     }
     public function save(Request $req){
@@ -66,7 +66,7 @@ class PackageController extends Controller
      }
      // Load Edit
     public function edit($id){
-        $place=Place::all();
+        $place=Place::where('place_status',1)->get();
         $data=Package::find($id);
         return view('Moderator.Package.edit',compact('data','place'));
     }

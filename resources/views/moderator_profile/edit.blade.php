@@ -32,7 +32,7 @@
 
             <div class="d-flex align-items-start align-items-sm-center gap-4">
               <img id="studentPhoto"
-                src="{{asset('storage/back/media/user/'.$user->image)}}"
+                src="{{asset('storage/back/media/user/Black and White Circle Business Logo.jpg')}}"
                 alt="user-avatar"
                 class="d-block rounded"
                 height="100"

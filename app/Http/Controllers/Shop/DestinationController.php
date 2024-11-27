@@ -15,7 +15,7 @@ class DestinationController extends Controller
     //
     //
     public function index(){
-        $place=Place::all();
+        $place=Place::where('place_status',1)->get();
         return view('Shop.Destination.index',compact('place'));
     }
     // Data Insert
@@ -63,7 +63,7 @@ class DestinationController extends Controller
     }
     // Edit Page Load
     public function edit($id){
-        $place=Place::all();
+        $place=Place::where('place_status',1)->get();
         $data=Destination::find($id);
         return view('Shop.Destination.edit',compact('data','place'));
     }

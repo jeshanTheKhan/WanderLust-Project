@@ -14,7 +14,7 @@ class GuideController extends Controller
     //
     //
     public function index(){
-        $place=Place::all();
+        $place=Place::where('place_status',1)->get();
         return view('Shop.Guide.index',compact('place'));
     }
     // Add 
@@ -69,7 +69,7 @@ class GuideController extends Controller
     }
     // Edit Page
     public function edit($id){
-        $place=Place::all();
+        $place=Place::where('place_status',1)->get();
         $guide=Guide::find($id);
         return view('Shop.Guide.edit',compact('place','guide'));
     }

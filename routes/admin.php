@@ -118,7 +118,6 @@ Route::get('/Admin/Delete-About/{id}', [AboutController::class, 'del'])->name('a
 Route::middleware('auth')->group(function () {
     Route::get('/Admin/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('/Admin/profile', [ProfileController::class, 'upload'])->name('profile.upload');
-    Route::post('/Admin/profile-image', [ProfileController::class, 'image_upload'])->name('profile.image_upload');
     Route::delete('/Admin/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 

@@ -65,7 +65,7 @@
           </div>
           <hr class="my-0" />
           <div class="card-body">
-            <form id="formAccountSettings" method="POST" action="{{ route('moderator.profile.upload') }}" >
+            <form id="formAccountSettings" method="POST" action="{{ route('admin.profile.upload') }}" >
               @csrf
               <div class="row">
                 <div class="mb-3 col-md-6">

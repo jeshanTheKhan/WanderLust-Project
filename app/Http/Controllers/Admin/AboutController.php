@@ -102,7 +102,7 @@ class AboutController extends Controller
                  'alert-type' => 'error'
              );
          }
-         return redirect()->back()->with($notification);  
+         return redirect()->route('admin.all.about')->with($notification);  
 
     }
     // Delete

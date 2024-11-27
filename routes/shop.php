@@ -55,6 +55,12 @@ Route::get('/Shop/Edit-testimonial/{id}', [TestimonialController::class, 'edit']
 Route::post('/Shop/Update-testimonial', [TestimonialController::class, 'update'])->name('update.testimonial');
 Route::get('/Shop/Delete-testimonial/{id}', [TestimonialController::class, 'del'])->name('testimonial.del');
 
+Route::middleware('auth')->group(function () {
+    Route::get('/Shop/profile', [ShopAdminController::class, 'edit'])->name('profile.edit');
+    Route::post('/Shop/profile', [ShopAdminController::class, 'upload'])->name('profile.upload');
+    Route::delete('/Shop/profile', [ShopAdminController::class, 'destroy'])->name('profile.destroy');
+});
+
 
 Route::get('/Shop-logout', [AuthenticatedSessionController::class, 'destroy'])
 ->name('out');

@@ -13,7 +13,7 @@ class PackageController extends Controller
 {
     //Index
     public function index(){
-        $place=Place::all();
+        $place=Place::where('place_status',1)->get();
         return view('Shop.Package.index',compact('place'));
     }
     public function save(Request $req){

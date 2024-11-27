@@ -96,7 +96,7 @@
                                                             <td class="sorting_1">{{ $data->header1 }}</td>
                                                             <td>{{ $data->link }}</td>
                                                             <td>
-                                                                <img class="img-responsive avatar-view" src="{{asset('storage/back/media/'.$data->images)}}" style="width: 40%;height:auto;" alt="Avatar" title="Change the avatar">
+                                                                <img class="img-responsive avatar-view" src="{{asset('storage/back/media/carosel/'.$data->images)}}" style="width: 40%;height:auto;" alt="Avatar" title="Change the avatar">
                                                             </td>
                                                             <td>
                                                                 @if($data->status == 1)
