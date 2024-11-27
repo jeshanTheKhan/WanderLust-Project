@@ -21,6 +21,7 @@ class DestinationController extends Controller
     public function Save(Request $req){
         $store=New Destination();
         $store->destination_place=$req->place;
+        $store->destination_slug=Str::slug($req->place);
         if ($req->file('main_thumbnail')) {
             $image = $req->file('main_thumbnail');
             $image_ext = chr(rand(65, 90)) .'-'.rand(00000, 99999). '.' . $image->getClientOriginalExtension();
@@ -69,6 +70,7 @@ class DestinationController extends Controller
     public function update(Request $req){
         $store=Destination::find($req->c_id);
         $store->destination_place = $req->place ?? $store->destination_place;
+        $store->destination_slug = $req->place ? Str::slug($req->place) : $store->destination_slug;
         if ($req->file('main_thumbnail')) {
             $image = $req->file('main_thumbnail');
             $image_ext = chr(rand(65, 90)) .'-'.rand(00000, 99999). '.' . $image->getClientOriginalExtension();

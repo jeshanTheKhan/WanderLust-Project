@@ -110,7 +110,7 @@
             <i class="typcn typcn-cog text-primary"></i>
             Settings
             </a>
-            <a class="dropdown-item">
+            <a class="dropdown-item" href="{{ route('logout') }}">
             <i class="typcn typcn-power text-primary"></i>
             Logout
             </a>
@@ -182,9 +182,9 @@
         <p class="sidebar-menu-title">Dash menu</p>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{ route('dashboard') }}">
           <i class="typcn typcn-device-desktop menu-icon"></i>
-          <span class="menu-title">Dashboard <span class="badge badge-primary ml-3">New</span></span>
+          <span class="menu-title">Dashboard </span>
         </a>
       </li>
       <li class="nav-item">
@@ -202,7 +202,7 @@
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
+        {{-- <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
           <i class="typcn typcn-film menu-icon"></i>
           <span class="menu-title">Form elements</span>
           <i class="menu-arrow"></i>
@@ -280,14 +280,7 @@
           <i class="typcn typcn-document-text menu-icon"></i>
           <span class="menu-title">Documentation</span>
         </a>
-      </li>
+      </li> --}}
     </ul>
-    <ul class="sidebar-legend">
-      <li>
-        <p class="sidebar-menu-title">Category</p>
-      </li>
-      <li class="nav-item"><a href="#" class="nav-link">#Sales</a></li>
-      <li class="nav-item"><a href="#" class="nav-link">#Marketing</a></li>
-      <li class="nav-item"><a href="#" class="nav-link">#Growth</a></li>
-    </ul>
+    
   </nav>
